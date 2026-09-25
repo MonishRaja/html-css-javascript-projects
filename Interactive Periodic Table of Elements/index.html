@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Interactive Periodic Table</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header class="topbar">
+            <div>
+                <div class="brand">Interactive Periodic Table</div>
+                <div class="subtitle">By Monish Raja S</div>
+            </div>
+
+            <button id="themeBtn" class="theme-btn" title="Change theme">
+                ◐
+            </button>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1>PERIODIC TABLE</h1>
+                <p>Explore elements, electron configurations and atomic properties</p>
+            </section>
+
+            <!-- SEARCH + FILTER -->
+            <section class="controls">
+                <div class="search-box">
+                    <span>🔎</span>
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search element, symbol or atomic number..."
+                    >
+                </div>
+
+                <select id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="alkali">Alkali Metals</option>
+                    <option value="alkaline">Alkaline Earth Metals</option>
+                    <option value="transition">Transition Metals</option>
+                    <option value="post-transition">Post-transition Metals</option>
+                    <option value="metalloid">Metalloids</option>
+                    <option value="nonmetal">Nonmetals</option>
+                    <option value="halogen">Halogens</option>
+                    <option value="noble">Noble Gases</option>
+                    <option value="lanthanide">Lanthanides</option>
+                    <option value="actinide">Actinides</option>
+                </select>
+
+                <button id="resetBtn" class="reset-btn">
+                    Reset
+                </button>
+            </section>
+
+            <!-- PERIODIC TABLE -->
+
+            <section class="table-wrapper">
+
+                <div class="periodic-table" id="periodicTable"></div>
+
+                <div class="series-label">Lanthanides</div>
+                <div class="series" id="lanthanides"></div>
+
+                <div class="series-label">Actinides</div>
+                <div class="series" id="actinides"></div>
+            </section>
+
+            <!-- LEGEND -->
+
+            <section class="legend">
+                <div class="legend-item alkali">Alkali Metal</div>
+                <div class="legend-item alkaline">Alkaline Earth Metal</div>
+                <div class="legend-item transition">Transition Metal</div>
+                <div class="legend-item post-transition">Post-transition Metal</div>
+                <div class="legend-item metalloid">Metalloid</div>
+                <div class="legend-item nonmetal">Nonmetal</div>
+                <div class="legend-item halogen">Halogen</div>
+                <div class="legend-item noble">Noble Gas</div>
+                <div class="legend-item lanthanide">Lanthanide</div>
+                <div class="legend-item actinide">Actinide</div>
+            </section>
+
+            <!-- ELEMENT INFORMATION -->
+
+            <section class="element-panel" id="elementPanel">
+                <div class="panel-placeholder" id="panelPlaceholder">
+                    <div class="big-atom">⚛</div>
+                    <h2>Select an element</h2>
+                    <p>
+                        Click any element to explore its electron shells,
+                        orbital configuration and atomic properties.
+                    </p>
+                </div>
+
+                <div class="element-details" id="elementDetails">
+                    <div class="detail-holder">
+                        <div class="large-symbol" id="detailSymbol">
+                            H
+                        </div>
+
+                        <div class="atomic-number-large" id="detailNumber">
+                            1
+                        </div>
+
+                        <h2 id="detailName">
+                            Hydrogen
+                        </h2>
+
+                        <span id="detailCategory" class="category-badge">
+                            Nonmetal
+                        </span>
+                    </div>
+                </div>
+
+                <div class="property-grid">
+                    <div class="property">
+                        <span>Atomic Mass</span>
+                        <strong id="detailMass">1.008</strong>
+                    </div>
+
+                    <div class="property">
+                        <span>Period</span>
+                        <strong id="detailPeriod">1</strong>
+                    </div>
+
+                    <div class="property">
+                        <span>Group</span>
+                        <strong id="detailGroup">1</strong>
+                    </div>
+
+                    <div class="property">
+                        <span>Block</span>
+                        <strong id="detailBlock">s</strong>
+                    </div>
+                </div>
+
+                <div class="configuration-section">
+                    <h3>Electron Configuration</h3>
+                    <div class="configuration" id="detailConfiguration">
+                        1s¹
+                    </div>
+                </div>
+
+                <div class="visual-section">
+                    <div class="visual-title">
+                        <h3>Bohr Electron Shells</h3>
+                        <span>Animated electron distribution</span>
+                    </div>
+                    <div class="bohr-container" id="bohrContainer"></div>
+                </div>
+
+                <div class="configuration-section">
+                    <h3>Electrons per Shell</h3>
+                    <div class="shell-container" id="shellContainer"></div>
+                </div>
+
+                <div class="visual-section orbital-section">
+                    <div class="visual-title">
+                        <h3>Orbital Diagram</h3>
+                        <span>Electron occupancy of atomic orbitals</span>
+                    </div>
+                    <div class="orbital-container" id="orbitalContainer"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© Monish Raja S | Interactive Periodic Table of Elements</p>
+        </footer>
+        
+        <script src="script.js"></script>
+    </body>
+</html>
