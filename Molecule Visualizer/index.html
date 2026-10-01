@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>3D Molecular Visualizer</title>
+
+    <!-- 3Dmol.js -->
+    <script src="https://3dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- HEADER -->
+
+        <header class="hero">
+
+            <div class="badge">
+                3D MOLECULAR LAB
+            </div>
+
+            <h1>
+                Molecular
+                <span>Visualizer</span>
+            </h1>
+
+            <p>
+                Enter a molecule, chemical formula, chemical name,
+                or SMILES notation to explore its molecular structure in 3D.
+            </p>
+
+        </header>
+
+
+        <!-- SEARCH -->
+
+        <section class="search-card">
+
+            <label for="moleculeInput">
+                Enter molecule
+            </label>
+
+            <div class="search-row">
+
+                <input
+                    id="moleculeInput"
+                    type="text"
+                    placeholder="Try H2O, caffeine, ethanol, CCO..."
+                    value="H2O"
+                >
+
+                <button id="visualizeButton">
+                    Visualize
+                </button>
+
+            </div>
+
+
+            <div class="examples">
+
+                <span>Examples</span>
+
+                <button data-value="H2O">
+                    H₂O
+                </button>
+
+                <button data-value="CO2">
+                    CO₂
+                </button>
+
+                <button data-value="CH4">
+                    CH₄
+                </button>
+
+                <button data-value="caffeine">
+                    Caffeine
+                </button>
+
+                <button data-value="ethanol">
+                    Ethanol
+                </button>
+
+                <button data-value="benzene">
+                    Benzene
+                </button>
+
+                <button data-value="glucose">
+                    Glucose
+                </button>
+
+                <button data-value="CCO">
+                    CCO
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- VISUALIZATION -->
+
+        <section class="visualizer-card">
+
+            <div class="viewer-top">
+
+                <div>
+
+                    <h2 id="moleculeName">
+                        Water
+                    </h2>
+
+                    <p id="moleculeFormula">
+                        H₂O
+                    </p>
+
+                </div>
+
+                <div
+                    id="status"
+                    class="status"
+                >
+                    Ready
+                </div>
+
+            </div>
+
+
+            <div id="viewer">
+
+                <div
+                    id="loading"
+                    class="loading"
+                >
+                    <div class="loader"></div>
+
+                    <span>
+                        Loading molecular structure...
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="viewer-controls">
+
+                <span>
+                    🖱 Drag to rotate
+                </span>
+
+                <span>
+                    🔍 Scroll to zoom
+                </span>
+
+                <span>
+                    ✋ Right-click to move
+                </span>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFORMATION -->
+
+        <section class="information">
+
+            <div class="info-card">
+
+                <div class="info-label">
+                    MOLECULE
+                </div>
+
+                <div
+                    id="infoMolecule"
+                    class="info-value"
+                >
+                    Water
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-label">
+                    FORMULA
+                </div>
+
+                <div
+                    id="infoFormula"
+                    class="info-value"
+                >
+                    H₂O
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-label">
+                    ATOMS
+                </div>
+
+                <div
+                    id="infoAtoms"
+                    class="info-value"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="info-card">
+
+                <div class="info-label">
+                    PUBCHEM CID
+                </div>
+
+                <div
+                    id="infoCID"
+                    class="info-value"
+                >
+                    -
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ERROR -->
+
+        <div
+            id="errorBox"
+            class="error-box"
+        ></div>
+
+
+        <footer>
+
+            <p>
+                Molecular structures retrieved from PubChem
+                and rendered using 3Dmol.js
+            </p>
+
+        </footer>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
