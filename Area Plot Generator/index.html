@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Area Plot Generator</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Area Plot Generator</h1>
+
+        <div class="form-container">
+
+            <div class="form-group">
+                <label for="xEntry">X Data Set</label>
+                <input
+                    type="text"
+                    id="xEntry"
+                    placeholder="Example: 1,2,3,4,5"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="y1Entry">Y1 Data Set</label>
+                <input
+                    type="text"
+                    id="y1Entry"
+                    placeholder="Example: 10,20,30,25,40"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="y2Entry">Y2 Data Set</label>
+                <input
+                    type="text"
+                    id="y2Entry"
+                    placeholder="Example: 5,15,20,30,35"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="color1Entry">First Color</label>
+                <input
+                    type="text"
+                    id="color1Entry"
+                    value="blue"
+                    placeholder="blue, red, #3498db"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="color2Entry">Second Color</label>
+                <input
+                    type="text"
+                    id="color2Entry"
+                    value="red"
+                    placeholder="red, green, #e74c3c"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="xaxisEntry">X-Axis Label</label>
+                <input
+                    type="text"
+                    id="xaxisEntry"
+                    placeholder="Example: Time"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="yaxisEntry">Y-Axis Label</label>
+                <input
+                    type="text"
+                    id="yaxisEntry"
+                    placeholder="Example: Value"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="gtitleEntry">Graph Title</label>
+                <input
+                    type="text"
+                    id="gtitleEntry"
+                    placeholder="Example: Sales Area Plot"
+                >
+            </div>
+
+        </div>
+
+
+        <!-- Messages -->
+
+        <div id="errorMessage" class="error"></div>
+
+        <div id="successMessage" class="success"></div>
+
+
+        <!-- Buttons -->
+
+        <div class="button-container">
+
+            <button
+                id="generateButton"
+                type="button">
+                Generate Graph
+            </button>
+
+            <button
+                id="saveButton"
+                type="button">
+                Save Graph
+            </button>
+
+        </div>
+
+
+        <!-- Chart -->
+
+        <div class="chart-container">
+            <canvas id="areaChart"></canvas>
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
