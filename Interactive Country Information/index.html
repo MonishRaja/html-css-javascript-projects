@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Country Information Explorer</title>
+
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div class="background-glow glow-one"></div>
+        <div class="background-glow glow-two"></div>
+
+        <main class="app-container">
+
+            <header class="header">
+                <div class="logo">🌏</div>
+                <p class="eyebrow">EXPLORE THE WORLD</p>
+                <h1>Country <span>Explorer</span></h1>
+                <p class="subtitle">Discover essential information about countries around the world.</p>
+            </header>
+
+            <section class="search-card">
+
+                <label for="countrySelect">Select a country</label>
+
+                <div class="search-row">
+                    <select id="countrySelect">
+                        <option value="">Loading countries...</option>
+                    </select>
+
+                    <button id="infoButton" class="btn btn-primary" disabled>
+                        Explore ↗
+                    </button>
+
+                    <button id="clearButton" class="btn btn-secondary">
+                        Clear 
+                    </button>
+                </div>
+
+                <p id="statusMessage" class="status" aria-live="polite">
+                    Connecting to the country database...
+                </p>
+
+            </section>
+
+            <section class="globe-section">
+
+                <div class="globe-container">
+                    <div id="globeViz"></div>
+                    <div class="globe-overlay">
+                        <span id="globeStatus">• LIVE GLOBE</span>
+                        <h3 id="globeCountryName">Explore the world</h3>
+                        <p id="globeCountryDetail">Choose a country to begin</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="countryCard" class="country-card hidden">
+
+                <div class="country-heading">
+                    <div>
+                        <p class="eyebrow">COUNTRY PROFILE</p>
+                        <h2 id="commonName">Country Name</h2>
+                        <p id="officialName" class="official-name"></p>
+                    </div>
+
+                    <img
+                        id="countryFlag"
+                        alt="Country flag"
+                        width="160"
+                        loading="lazy"
+                        hidden
+                    />
+                </div>
+
+                <div class="info-grid">
+
+                    <article class="info-item">
+                        <span class="info-icon">🏛️</span>
+                        <div>
+                            <p class="info-label">Capital</p>
+                            <p id="capital" class="info-value">-</p>
+                        </div>
+                    </article>
+
+                    <article class="info-item">
+                        <span class="info-icon">🌏</span>
+                        <div>
+                            <p class="info-label">Continent</p>
+                            <p id="continent" class="infor-value">-</p>
+                        </div>
+                    </article>
+
+                    <article class="info-item">
+                        <span class="info-icon">👥</span>
+                        <div>
+                            <p class="info-label">Population</p>
+                            <p id="population" class="info-value">-</p>
+                        </div>
+                    </article>
+
+                    <article class="info-item">
+                        <span class="info-icon">💰</span>
+                        <div>
+                            <p class="info-label">Currency</p>
+                            <p id="currency" class="info-value">-</p>
+                        </div>
+                    </article>
+
+                    <article class="info-item">
+                        <span class="info-icon">🕒</span>
+                        <div>
+                            <p class="info-label">Time Zones</p>
+                            <p id="timezones" class="info-value">-</p>
+                        </div>
+                    </article>
+
+                    <article class="info-item">
+                        <span class="info-icon">🗣️</span>
+                        <div>
+                            <p class="info-label">Languages</p>
+                            <p id="languages" class="info-value">-</p>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="country-footer">
+                    <span>🌐 Country Information</span>
+                    <span id="countryCode">ISO Code: -</span>
+                </div>
+
+            </section>
+
+            <footer class="footer">
+                <p>©️ Monish Raja S | Country Explorer | Powered by REST API</p>
+            </footer>
+
+        </main>
+
+        <script src="https://unpkg.com/topojson-client@3"></script>
+        <script src="https://unpkg.com/globe.gl@2.45.0/dist/globe.gl.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
