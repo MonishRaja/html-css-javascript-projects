@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Donut Chart Generator</title>
+
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <h1>Donut Chart Generator</h1>
+            <p class="subtitle">Create your own chart in seconds</p>
+
+            <div class="form-group">
+                <label for="sizes">Sizes</label>
+                <input type="text" id="sizes" value="40,30,20,10" placeholder="e.g. 40,30,20,10">
+            </div>
+
+            <div class="form-group">
+                <label for="labels">Labels</label>
+                <input type="text" id="labels" value="A,B,C,D" placeholder="e.g. A,B,C,D">
+            </div>
+
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" value="My Donut Chart" placeholder="Enter chart title">
+            </div>
+
+            <button id="generateBtn" type="button">Generate Chart</button>
+
+            <button id="downloadBtn" type="button">Download Chart</button>
+
+            <p id="error" role="alert"></p>
+
+            <div class="chart-container">
+                <canvas id="donutChart"></canvas>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
