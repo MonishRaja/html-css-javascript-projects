@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Resistance & Voltage Decoder</title>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div class="container">
+            <h1>Resistance Decoder</h1>
+            <p class="subtitle">Resistance & Voltage Calculator</p>
+
+            <!-- Resistor Preview -->
+            <div class="resistor">
+                <div class="wire"></div>
+
+                <div class="resistor-body">
+                    <div class="band" id="band1"></div>
+                    <div class="band" id="band2"></div>
+                    <div class="band" id="band3"></div>
+                </div>
+
+                <div class="wire"></div>
+            </div>
+
+            <h3 class="section-title">Resistance Color Code</h3>
+
+            <div class="field">
+                <label>1st Color (First Digit)</label>
+                <select id="color1">
+                    <option value="">Select First Color</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>2nd Color (Second Digit)</label>
+                <select id="color2">
+                    <option value="">Select Second Color</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>3rd Color (Multiplier)</label>
+                <select id="color3">
+                    <option value="">Select Third Color</option>
+                </select>
+            </div>
+
+            <h3 class="section-title">Voltage Divider Input</h3>
+
+            <div class="field">
+                <label for="inputVoltage">Input Voltage (Vin) in Volts</label>
+                <input type="number" id="inputVoltage" placeholder="Enter input voltage" min="0" step="any">
+            </div>
+
+            <div class="field">
+                <label for="r2">Second Resistance (R2) in Ohms</label>
+                <input type="number" id="r2" placeholder="Enter R2 value in Ohms" min="0" step="any">
+            </div>
+
+            <button onclick="calculate()">Calculate</button>
+            <button class="reset" onclick="resetCalculator()">Reset</button>
+
+            <!-- Results -->
+            <div class="result" id="result">
+                <h2>Calculation Results</h2>
+
+                <div class="result-item">
+                    <p>Resistance R1</p>
+                    <div class="value" id="ohms"></div>
+                </div>
+
+                <div class="result-item">
+                    <p>Input Voltage (Vin)</p>
+                    <div class="value" id="vinResult"></div>
+                </div>
+
+                <div class="result-item">
+                    <p>Output Voltage (Vout)</p>
+                    <div class="value" id="vout"></div>
+                </div>
+            </div>
+
+            <p class="error" id="error"></p>
+
+            <footer>
+                Resistance Color Code & Voltage Divider Calculator | © Monish Raja
+            </footer>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
