@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trigonometric Series Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- PDF Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <header>
+        <h1>Trigonometric Series Calculator</h1>
+
+        <p>
+            Calculate, Visualize and Understand
+            Trigonometric Series
+        </p>
+
+        <div class="line"></div>
+    </header>
+
+
+    <!-- CALCULATOR SECTION -->
+
+    <section class="section">
+
+        <h2 class="section-title">Calculator</h2>
+
+        <div class="input-grid">
+
+            <div class="input-group">
+                <label for="angle">Angle in Degrees</label>
+
+                <input
+                    type="number"
+                    id="angle"
+                    placeholder="Enter angle"
+                >
+            </div>
+
+            <div class="input-group">
+                <label for="terms">Number of Terms</label>
+
+                <input
+                    type="number"
+                    id="terms"
+                    min="1"
+                    max="30"
+                    placeholder="Enter number of terms"
+                >
+            </div>
+
+        </div>
+
+        <div class="buttons">
+
+            <button class="primary" onclick="calculateSeries()">
+                Calculate
+            </button>
+
+            <button class="secondary" onclick="resetCalculator()">
+                Reset
+            </button>
+
+        </div>
+
+        <p id="error" class="error"></p>
+
+    </section>
+
+    <!-- FORMULA SECTION -->
+
+    <section class="section">
+
+        <h2 class="section-title">Mathematical Formulas</h2>
+
+        <div class="formula-grid">
+
+            <div class="formula-box">
+
+                <h3>Sine Series</h3>
+
+                <div class="formula">
+                    sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + ...
+                </div>
+
+                <p class="formula-note">
+                    Alternating odd powers of x.
+                </p>
+
+            </div>
+
+            <div class="formula-box">
+
+                <h3>Cosine Series</h3>
+
+                <div class="formula">
+                    cos(x) = 1 - x²/2! + x⁴/4! - x⁶/6! + ...
+                </div>
+
+                <p class="formula-note">
+                    Alternating even powers of x.
+                </p>
+
+            </div>
+
+            <div class="formula-box">
+
+                <h3>Tangent</h3>
+
+                <div class="formula">
+                    tan(x) = sin(x) / cos(x)
+                </div>
+
+                <p class="formula-note">
+                    Calculated using sine and cosine series.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- RESULTS SECTION -->
+
+    <section class="section" id="resultsSection">
+
+        <h2 class="section-title">Calculation Results</h2>
+
+        <div class="result-grid">
+
+            <div class="result-box">
+                <h3>sin(x) - Sine</h3>
+
+                <p class="result-value" id="sineResult"></p>
+
+                <p class="result-error" id="sineError"></p>
+            </div>
+
+            <div class="result-box">
+                <h3>cos(x) - Cosine</h3>
+
+                <p class="result-value" id="cosResult"></p>
+
+                <p class="result-error" id="cosError"></p>
+            </div>
+
+            <div class="result-box">
+                <h3>tan(x) - Tangent</h3>
+
+                <p class="result-value" id="tanResult"></p>
+
+                <p class="result-error" id="tanError"></p>
+            </div>
+
+        </div>
+
+        <!-- DOWNLOAD BUTTONS -->
+
+        <div class="buttons">
+
+            <button class="download" onclick="downloadCSV()">
+                Download CSV
+            </button>
+
+            <button class="download" onclick="downloadPDF()">
+                Download PDF
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- INTERACTIVE GRAPH SECTION -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            Interactive Graph Visualization
+        </h2>
+
+        <div class="graph-box">
+
+            <h3>Trigonometric Functions</h3>
+
+            <p>
+                Graph of sine, cosine and tangent
+                over -360° to +360°.
+            </p>
+
+            <canvas id="functionGraph"></canvas>
+
+            <div class="legend">
+
+                <span>
+                    <i class="dot sine-dot"></i>
+                    Sine
+                </span>
+
+                <span>
+                    <i class="dot cosine-dot"></i>
+                    Cosine
+                </span>
+
+                <span>
+                    <i class="dot tangent-dot"></i>
+                    Tangent
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONVERGENCE SECTION -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            Series Convergence Visualization
+        </h2>
+
+        <div class="graph-box">
+
+            <h3>Convergence of Taylor Series</h3>
+
+            <p id="convergenceDescription">
+                Calculate an angle to view its convergence.
+            </p>
+
+            <div class="graph-controls">
+
+                <label for="convergenceType">
+                    Select Function:
+                </label>
+
+                <select
+                    id="convergenceType"
+                    onchange="drawConvergence()"
+                >
+
+                    <option value="sine">
+                        Sine Series
+                    </option>
+
+                    <option value="cosine">
+                        Cosine Series
+                    </option>
+
+                </select>
+
+            </div>
+
+            <canvas id="convergenceGraph"></canvas>
+
+            <div class="legend">
+
+                <span>
+                    <i class="dot sine-dot"></i>
+                    Partial Sum
+                </span>
+
+                <span>
+                    <i class="dot cosine-dot"></i>
+                    Actual Value
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        Trigonometric Series Calculator |
+        © Monish Raja
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
