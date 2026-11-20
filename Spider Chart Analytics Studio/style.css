@@ -1,0 +1,504 @@
+/* ==========================
+   GLOBAL STYLES
+========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+:root {
+    --midnight: #080e24;
+    --panel: #111b38;
+    --panel-light: #172344;
+    --border: #29385f;
+
+    --green: #39ff88;
+    --violet: #9b72ff;
+    --purple: #7955d9;
+
+    --white: #ffffff;
+    --muted: #99a8c9;
+}
+
+body {
+    background: var(--midnight);
+    color: var(--white);
+    min-height: 100vh;
+    padding: 25px;
+}
+
+/* ==========================
+   MAIN CONTAINER
+========================== */
+
+.app-container {
+    max-width: 1450px;
+    margin: auto;
+}
+
+/* =========================
+   HEADER
+========================== */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.header h1 {
+    font-size: 30px;
+    background: linear-gradient(90deg, var(--green), var(--violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header p {
+    color: var(--muted);
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.status {
+    color: var(--green);
+    font-size: 13px;
+    background: #142b35;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    margin-right: 7px;
+}
+
+/* ==========================
+   DASHBOARD LAYOUT
+========================== */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 25px;
+}
+
+.sidebar,
+.main-content {
+    min-width: 0;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ==========================
+   PANELS
+========================== */
+
+.panel,
+.chart-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 22px;
+    margin-bottom: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.panel h2 {
+    font-size: 17px;
+    color: var(--green);
+    margin-bottom: 20px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-heading h2 {
+    margin-bottom: 20px;
+}
+
+/* ==========================
+   FORM ELEMENTS
+========================== */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    color: #d0d8ee;
+    margin-bottom: 9px;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    background: #0b1430;
+    color: white;
+    border-radius: 8px;
+    outline: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 10px rgba(57, 255, 136, 0.12);
+}
+
+input:placeholder,
+textarea:placeholder {
+    color: #657397;
+}
+
+small {
+    color: var(--muted);
+    font-size: 11px;
+    display: block;
+    margin-top: 7px;
+}
+
+/* ==========================
+   DATASET MANAGER
+========================== */
+
+.dataset-card {
+    background: var(--panel-light);
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.dataset-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.dataset-top input[type="text"] {
+    flex: 1;
+}
+
+.dataset-top input[type="color"] {
+    width: 38px;
+    height: 38px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.dataset-values {
+    width: 100%;
+}
+
+.remove-btn {
+    background: #4a1e40;
+    color: #ff8ab3;
+    border: none;
+    padding: 9px 11px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background: #74284c;
+}
+
+.small-btn {
+    background: #30235b;
+    color: var(--violet);
+    border: 1px solid #59438d;
+    padding: 8px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.small-btn:hover {
+    background: var(--purple);
+    color: white;
+}
+
+/* ==========================
+   CHECKBOXES
+========================== */
+
+.check-label {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.check-label input {
+    width: 16px;
+    accent-color: var(--green);
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+button {
+    transition: 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.generate-btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 9px;
+    background: var(--green);
+    color: #081426;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.generate-btn:hover {
+    background: #20db70;
+    box-shadow: 0 5px 20px rgba(57, 255, 136, 0.2);
+}
+
+#error {
+    color: #ff7185;
+    font-size: 12px;
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+/* ==========================
+   STATISTICS CARDS
+========================== */
+
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    min-width: 0;
+}
+
+.stat-card span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.stat-card h2 {
+    color: var(--green);
+    font-size: 28px;
+    margin: 12px 0;
+    overflow-wrap: anywhere;
+}
+
+.stat-card small {
+    color: #8796ba;
+}
+
+/* ==========================
+   CHART PANEL
+========================== */
+
+.chart-panel {
+    margin-bottom: 20px;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.chart-header h2 {
+    color: var(--violet);
+    font-size: 19px;
+}
+
+.chart-header p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 7px;
+}
+
+.export-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.export-btn {
+    padding: 10px 15px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    background: transparent;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.export-btn:hover {
+    background: var(--green);
+    color: var(--midnight);
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 430px;
+    width: 100%;
+}
+
+/* ==========================
+   STATISTICS TABLE
+========================== */
+
+.statistics-panel {
+    margin-bottom: 20px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+th {
+    color: var(--green);
+    font-size: 12px;
+    text-align: left;
+    padding: 14px;
+    background: #172344;
+}
+
+td {
+    padding: 14px;
+    color: #c4cde5;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+}
+
+tbody tr:hover {
+    background: #172344;
+}
+
+/* ==========================
+   FOOTER
+========================== */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+footer span {
+    color: var(--green);
+}
+
+/* ==========================
+   RESPONSIVE DESIGN
+========================== */
+
+@media(max-width: 1100px) {
+
+    .dashboard {
+        grid-template-columns: 290px 1fr;
+    }
+
+    .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 750px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .header h1 {
+        font-size: 25px;
+    }
+
+    .chart-wrapper {
+        height: 350px;
+    }
+}
+
+@media(max-width: 450px) {
+
+    .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-card {
+        padding: 13px;
+    }
+
+    .stat-card h2 {
+        font-size: 22px;
+    }
+
+    .chart-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .panel,
+    .chart-panel {
+        padding: 16px;
+    }
+}
