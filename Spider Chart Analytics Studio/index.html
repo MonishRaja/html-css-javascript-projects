@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Spider Chart Analytics Studio</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="header">
+            <div>
+                <h1>✦ Spider Chart Studio</h1>
+                <p>Advanced Interactive Data Visualization Dashboard</p>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                Analytics Active
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+
+            <!-- Left Panel -->
+            <aside class="sidebar">
+
+                <!-- Data Configuration -->
+                <div class="panel">
+
+                    <h2>⚡ Data Configuration</h2>
+
+                    <div class="form-group">
+
+                        <label for="categories">Categories</label>
+
+                        <textarea
+                            id="categories"
+                            rows="3"
+                            placeholder="Math, Science, English, History, Sports"
+                        ></textarea>
+
+                        <small>
+                            Separate categories using commas.
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <!-- Dataset Manager -->
+                <div class="panel">
+
+                    <div class="section-heading">
+
+                        <h2>📊 Datasets</h2>
+
+                        <button
+                            class="small-btn"
+                            id="addDataset"
+                            type="button"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+                    <div id="datasetList"></div>
+
+                    <small>
+                        Enter one numerical value for each category.
+                    </small>
+
+                </div>
+
+                <!-- Chart Settings -->
+                <div class="panel">
+
+                    <h2>🎨 Chart Customization</h2>
+
+                    <div class="form-group">
+
+                        <label for="chartTitle">
+                            Chart Title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="chartTitle"
+                            value="Sample Spider Chart"
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="maxValue">
+                            Maximum Value
+                        </label>
+
+                        <input
+                            type="number"
+                            id="maxValue"
+                            value="100"
+                            min="1"
+                            step="any"
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="check-label">
+
+                            <input
+                                type="checkbox"
+                                id="showGrid"
+                                checked
+                            >
+
+                            Show Grid Lines
+
+                        </label>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="check-label">
+
+                            <input
+                                type="checkbox"
+                                id="showLegend"
+                                checked
+                            >
+
+                            Show Legend
+
+                        </label>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label class="check-label">
+
+                            <input
+                                type="checkbox"
+                                id="showFill"
+                                checked
+                            >
+
+                            Show Fill
+
+                        </label>
+
+                    </div>
+
+                    <button
+                        class="generate-btn"
+                        id="generateBtn"
+                        type="button"
+                    >
+                        ✦ Generate Spider Chart
+                    </button>
+
+                    <p id="error" role="alert"></p>
+
+                </div>
+
+            </aside>
+
+            <!-- Right Content -->
+            <section class="main-content">
+
+                <!-- Statistics -->
+                <div class="stats-section">
+
+                    <div class="stat-card">
+
+                        <span>Total Datasets</span>
+
+                        <h2 id="totalDatasets">0</h2>
+
+                        <small>Datasets compared</small>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <span>Overall Average</span>
+
+                        <h2 id="averageValue">0</h2>
+
+                        <small>Across all values</small>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <span>Highest Value</span>
+
+                        <h2 id="highestValue">0</h2>
+
+                        <small>Maximum recorded</small>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <span>Lowest Value</span>
+
+                        <h2 id="lowestValue">0</h2>
+
+                        <small>Minimum recorded</small>
+
+                    </div>
+
+                </div>
+
+                <!-- Spider Chart -->
+                <div class="chart-panel">
+
+                    <div class="chart-header">
+
+                        <div>
+
+                            <h2 id="displayTitle">
+                                Sample Spider Chart
+                            </h2>
+
+                            <p>
+                                Interactive Spider / Radar Visualization
+                            </p>
+
+                        </div>
+
+                        <div class="export-buttons">
+
+                            <button
+                                class="export-btn"
+                                id="pngBtn"
+                                type="button"
+                            >
+                                ↓ PNG
+                            </button>
+
+                            <button
+                                class="export-btn"
+                                id="pdfBtn"
+                                type="button"
+                            >
+                                ↓ PDF
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chart-wrapper">
+
+                        <canvas id="myChart"></canvas>
+
+                    </div>
+
+                </div>
+
+                <!-- Dataset Statistics -->
+                <div class="panel statistics-panel">
+
+                    <h2>📈 Dataset Statistics</h2>
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+                                    <th>Dataset</th>
+                                    <th>Average</th>
+                                    <th>Highest</th>
+                                    <th>Lowest</th>
+                                    <th>Total</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="statisticsBody">
+
+                                <tr>
+                                    <td colspan="5">
+                                        Generate a chart to view statistics.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+
+        Spider Chart Analytics Studio
+
+        <span>✦</span>
+
+        © Monish Raja
+
+    </footer>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
