@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flow Studio 2.0</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="brand">
+        <div class="logo">FS</div>
+        <div>
+            <h1>Flow Studio <span>2.0</span></h1>
+            <p>Universal Flow Visualization Platform</p>
+        </div>
+    </div>
+
+    <button class="report-btn" onclick="downloadPDF()">
+        Download PDF Report
+    </button>
+</header>
+
+<main class="container">
+
+    <!-- Introduction -->
+    <section class="welcome">
+        <div>
+            <h2>Visualize Your Data Flows</h2>
+            <p>
+                Create, customize, compare, and export interactive
+                Sankey diagrams using your own data.
+            </p>
+        </div>
+    </section>
+
+    <!-- Statistics -->
+    <section class="stats-grid">
+
+        <div class="stat-card">
+            <p>Total Scenarios</p>
+            <h2>02</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Total Nodes</p>
+            <h2 id="totalNodes">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Total Connections</p>
+            <h2 id="totalConnections">0</h2>
+        </div>
+
+        <div class="stat-card">
+            <p>Combined Flow Volume</p>
+            <h2 id="totalFlow">0</h2>
+        </div>
+
+    </section>
+
+    <!-- Data Input -->
+    <section class="panel">
+
+        <div class="section-heading">
+            <div>
+                <h2>Data Input</h2>
+                <p>Enter the source, target, and numerical flow value.</p>
+            </div>
+        </div>
+
+        <div class="scenario-tabs">
+            <button class="tab active" onclick="switchScenario('A')">
+                Scenario A
+            </button>
+
+            <button class="tab" onclick="switchScenario('B')">
+                Scenario B
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Source</th>
+                        <th>Target</th>
+                        <th>Flow Value</th>
+                        <th>Link Color</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="dataTable"></tbody>
+            </table>
+        </div>
+
+        <div class="table-actions">
+            <button class="secondary-btn" onclick="addRow()">
+                + Add Connection
+            </button>
+
+            <button class="secondary-btn" onclick="loadSample()">
+                Load Sample Data
+            </button>
+
+            <button class="primary-btn" onclick="generateAll()">
+                Generate Both Diagrams
+            </button>
+        </div>
+
+    </section>
+
+    <!-- Node Customization -->
+    <section class="panel">
+
+        <div class="section-heading">
+            <div>
+                <h2>Node Customization</h2>
+                <p>Choose individual colors for each node.</p>
+            </div>
+        </div>
+
+        <div id="nodeColors" class="color-grid"></div>
+
+    </section>
+
+    <!-- Diagrams -->
+    <section class="panel">
+
+        <div class="section-heading">
+            <div>
+                <h2>Diagram Visualization</h2>
+                <p>Interactive Sankey diagrams generated from your data.</p>
+            </div>
+        </div>
+
+        <div class="diagram-grid">
+
+            <div class="diagram-card">
+                <div class="diagram-heading">
+                    <h3>Scenario A</h3>
+
+                    <div class="export-buttons">
+                        <button onclick="exportChart('A','png')">
+                            PNG
+                        </button>
+
+                        <button onclick="exportChart('A','svg')">
+                            SVG
+                        </button>
+                    </div>
+                </div>
+
+                <div id="chartA" class="chart"></div>
+            </div>
+
+            <div class="diagram-card">
+                <div class="diagram-heading">
+                    <h3>Scenario B</h3>
+
+                    <div class="export-buttons">
+                        <button onclick="exportChart('B','png')">
+                            PNG
+                        </button>
+
+                        <button onclick="exportChart('B','svg')">
+                            SVG
+                        </button>
+                    </div>
+                </div>
+
+                <div id="chartB" class="chart"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Analysis -->
+    <section class="panel">
+
+        <div class="section-heading">
+            <div>
+                <h2>Scenario Comparison</h2>
+                <p>Compare the flow statistics of both scenarios.</p>
+            </div>
+        </div>
+
+        <div class="comparison-grid">
+
+            <div class="comparison-card">
+                <h3>Scenario A</h3>
+                <p>Total Flow Volume</p>
+                <h2 id="flowA">0</h2>
+                <p>Connections: <strong id="connectionsA">0</strong></p>
+            </div>
+
+            <div class="comparison-card">
+                <h3>Scenario B</h3>
+                <p>Total Flow Volume</p>
+                <h2 id="flowB">0</h2>
+                <p>Connections: <strong id="connectionsB">0</strong></p>
+            </div>
+
+        </div>
+
+        <div class="analysis-result">
+            <h3>Comparison Result</h3>
+            <p id="comparisonResult">
+                Generate both diagrams to view the comparison.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>Flow Studio 2.0 | Universal Flow Visualization Platform | © Monish Raja</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
