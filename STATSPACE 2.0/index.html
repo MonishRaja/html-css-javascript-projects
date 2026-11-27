@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>STATSPACE 2.0 | Statistical Analysis</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700
+        &family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="style.css">
+
+        <!-- Chart.js -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <!-- Excel support -->
+        <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+        <!-- PDF support -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js"></script>
+    </head>
+
+    <body>
+
+        <div class="app">
+
+            <!-- Sidebar -->
+
+            <aside class="sidebar">
+                <div class="logo">
+                    <div class="logo-icon">∑</div>
+                    <div>
+                        <h2>STATSPACE</h2>
+                        <span>ANALYTICS STUDIO 2.0</span>
+                    </div>
+                </div>
+
+                <div class="nav-label">WORKSPACE</div>
+
+                <nav class="navigation">
+
+                    <button class="nav-item active" data-page="dashboard">
+                        <span>◫</span> Dashboard
+                    </button>
+
+                    <button class="nav-item" data-page="descriptive">
+                        <span>∑</span> Descriptive Statistics
+                    </button>
+
+                    <button class="nav-item" data-page="distribution">
+                        <span>▥</span> Distribution Analysis
+                    </button>
+
+                    <button class="nav-item" data-page="correlation">
+                        <span>⌁</span> Correlation & Regression
+                    </button>
+
+                    <button class="nav-item" data-page="datasets">
+                        <span>▤</span> Dataset Manager
+                    </button>
+
+                    <button class="nav-item" data-page="comparison">
+                        <span>⇆</span> Dataset Comparison
+                    </button>
+
+                    <button class="nav-item" data-page="reports">
+                        <span>▧</span> Reports & Export
+                    </button>
+                </nav>
+
+                <div class="sidebar-bottom">
+                    <div class="sidebar-note">
+                        <span class="note-icon">✦</span>
+                        <h4>Analyze smarter.</h4>
+                        <p>Turn raw data into meaningful insights.</p>
+                    </div>
+
+                    <div class="version">STATSPACE 2.0 · 2026</div>
+                </div>
+            </aside>
+
+            <!-- MAIN AREA -->
+
+            <main class="main-area">
+
+                <header class="topbar">
+
+                    <div>
+                        <div class="breadcrumb">WORKSPACE / <span id="pageName">DASHBOARD</span></div>
+                        <h3 id="headerTitle">Overview</h3>
+                    </div>
+
+                    <div class="top-actions">
+
+                        <span class="system-status">
+                            <span class="status-dot"></span>
+                            SYSTEM READY
+                        </span>
+
+                        <button class="primary-small" onclick="showPage('datasets')">
+                          + New Dataset
+                        </button>
+                    </div>
+                </header>
+
+                <div class="content">
+
+                    <!-- DASHBOARD -->
+
+                    <section id="dashboard" class="page active">
+
+                        <div class="welcome">
+                            <div>
+                                <span class="eyebrow">STATISTICAL WORKSPACE</span>
+                                <h1>Discover the story<br>behind your <em>data.</em></h1>
+                                <p>Analyze, visualize and interpret your datasets in one place.</p>
+                            </div>
+
+                            <div class="welcome-mark">∑</div>
+                        </div>
+
+                        <div class="stats-grid">
+
+                            <div class="stat-card">
+                                <span class="stat-label">DATASETS</span>
+                                <strong id="dashDatasets">0</strong>
+                                <span class="stat-description">Available datasets</span>
+                            </div>
+
+                            <div class="stat-card">
+                                <span class="stat-label">DATA POINTS</span>
+                                <strong id="dashPoints">0</strong>
+                                <span class="stat-description">Total observations</span>
+                            </div>
+
+                            <div class="stat-card">
+                                <span class="stat-label">ACTIVE MEAN</span>
+                                <strong id="dashMean">-</strong>
+                                <span class="stat-description">Current dataset</span>
+                            </div>
+
+                            <div class="stat-card">
+                                <span class="stat-label">STANDARD DEVIATION</span>
+                                <strong id="dashSD">-</strong>
+                                <span class="stat-description">Sample dispersion</span>
+                            </div>
+                        </div>
+
+                        <div class="section-title">
+                            <div>
+                                <span class="eyebrow">QUICK ACCESS</span>
+                                <h2>Analysis modules</h2>
+                            </div>
+                        </div>
+
+                        <div class="module-grid">
+
+                            <div class="module-card" onclick="showPage('descriptive')">
+                                <span class="module-icon emerald">∑</span>
+                                <h3>Descriptive Statistics</h3>
+                                <p>Explore central tendency and dispersion.</p>
+                                <span class="module-link">Explore module →</span>
+                            </div>
+
+                            <div class="module-card" onclick="showPage('distribution')">
+                                <span class="module-icon rose">▥</span>
+                                <h3>Distribution Analysis</h3>
+                                <p>Understand distributions and outliers.</p>
+                                <span class="module-link">Explore module →</span>
+                            </div>
+
+                            <div class="module-card" onclick="showPage('correlation')">
+                                <span class="module-icon beige">⌁</span>
+                                <h3>Correlation & Regression</h3>
+                                <p>Discover relationships between variables.</p>
+                                <span class="module-link">Explore module →</span>
+                            </div>
+
+                            <div class="module-card" onclick="showPage('comparison')">
+                                <span class="module-icon emerald">⇆</span>
+                                <h3>Dataset Comparison</h3>
+                                <p>Compare statistical characteristics.</p>
+                                <span class="module-link">Explore module →</span>
+                            </div>
+                        </div>
+
+                        <div class="panel recent-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <span class="eyebrow">RECENT ACTIVITY</span>
+                                    <h2>Analysis history</h2>
+                                </div>
+                            </div>
+                            <div id="dashboardHistory" class="empty-state">
+                                No analysis performed yet.
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- DESCRIPTIVE STATISTICS -->
+
+                    <section id="descriptive" class="page">
+
+                        <div class="page-intro">
+                            <span class="eyebrow">MODULE 01</span>
+                            <h1>Descriptive Statistics</h1>
+                            <p>Summarize the important characteristics of your numerical dataset.</p>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h2>Dataset selection</h2>
+                                <select id="descriptiveDataset" class="select-input"></select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>OR ENTER DATA MANUALLY</label>
+                                <textarea id="manualData" placeholder="10, 20, 30, 40, 50"></textarea>
+                            </div>
+
+                            <div class="control-row">
+                                <div>
+                                    <label>Calculation method</label>
+                                    <select id="statMethod" class="select-input">
+                                        <option value="sample">Sample</option>
+                                        <option value="population">Population</option>
+                                    </select>
+                                </div>
+
+                                <button class="primary-btn" onclick="calculateDescriptive()">
+                                    Calculate Statistics →
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="results-grid" id="descriptiveResults">
+
+                            <div class="result-card">
+                                <span>MEAN</span>
+                                <strong id="rMean">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>MEDIAN</span>
+                                <strong id="rMedian">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>MODE</span>
+                                <strong id="rMode">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>STANDARD DEVIATION</span>
+                                <strong id="rSD">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>VARIANCE</span>
+                                <strong id="rVariance">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>RANGE</span>
+                                <strong id="rRange">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>Q1</span>
+                                <strong id="rQ1">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>Q3</span>
+                                <strong id="rQ3">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>INTERQUARTILE RANGE</span>
+                                <strong id="rIQR">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>COEFFICIENT OF VARIATION</span>
+                                <strong id="rCV">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>SKEWNESS</span>
+                                <strong id="rSkew">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>EXCESS KURTOSIS</span>
+                                <strong id="rKurt">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h2>Statistical interpretation</h2>
+                            </div>
+                            <div id="interpretation" class="interpretation">
+                                Calculate your statistics to see an interpretation.
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- DISTRIBUTION ANALYSIS -->
+
+                    <section id="distribution" class="page">
+
+                        <div class="page-intro">
+                            <span class="eyebrow">MODULE 02</span>
+                            <h1>Distribution Analysis</h1>
+                            <p>Visualize frequency patterns and identify unusual observations.</p>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h2>Distribution dataset</h2>
+                                <select id="distributionDataset" class="select-input"></select>
+                            </div>
+
+                            <button class="primary-btn" onclick="renderDistribution()">
+                                Generate Analysis →
+                            </button>
+                        </div>
+
+                        <div class="chart-grid">
+
+                            <div class="panel chart-panel">
+                                <div class="panel-heading">
+                                    <h2>Frequency histogram</h2>
+                                </div>
+                                <canvas id="histogramChart"></canvas>
+                            </div>
+
+                            <div class="panel chart-panel">
+                                <div class="panel-heading">
+                                    <h2>Box-and-whisker plot</h2>
+                                </div>
+                                <canvas id="boxChart"></canvas>
+                            </div>
+
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h2>Outlier detection (IQR method)</h2>
+                            </div>
+
+                            <div class="outlier-grid">
+                                <div>
+                                    <span>LOWER FENCE</span>
+                                    <strong id="lowerFence">-</strong>
+                                </div>
+                                <div>
+                                    <span>UPPER FENCE</span>
+                                    <strong id="upperFence">-</strong>
+                                </div>
+                                <div>
+                                    <span>OUTLIER COUNT</span>
+                                    <strong id="outlierCount">-</strong>
+                                </div>
+                            </div>
+
+                            <p id="outlierList" class="interpretation"></p>
+                        </div>
+                    </section>
+
+                    <!-- CORRELATION & REGRESSION -->
+
+                    <section id="correlation" class="page">
+
+                        <div class="page-intro">
+                            <span class="eyebrow">MODULE 03</span>
+                            <h1>Correlation & Regression</h1>
+                            <p>Analyze relationships between two numerical variables.</p>
+                        </div>
+
+                        <div class="panel">
+                            <h2>Enter paired observations</h2>
+                            <p class="help-text">Enter X and Y values in corresponding order.</p>
+
+                            <div class="two-column">
+
+                                <div class="input-group">
+                                    <label>X DATA</label>
+                                    <textarea id="xData" placeholder="1, 2, 3, 4, 5"></textarea>
+                                </div>
+
+                                <div class="input-group">
+                                    <label>Y DATA</label>
+                                    <textarea id="yData" placeholder="2, 4, 5, 4, 6"></textarea>
+                                </div>
+                            </div>
+
+                            <button class="primary-btn" onclick="calculateCorrelation()">
+                                Analyze Relationship →
+                            </button>
+                        </div>
+
+                        <div class="results-grid">
+
+                            <div class="result-card">
+                                <span>PEARSON CORRELATION(r)</span>
+                                <strong id="corrR">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>REGRESSION SLOPE</span>
+                                <strong id="regSlope">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>REGRESSION INTERCEPT</span>
+                                <strong id="regIntercept">-</strong>
+                            </div>
+
+                            <div class="result-card">
+                                <span>R-SQUARED</span>
+                                <strong id="regR2">-</strong>
+                            </div>
+                        </div>
+
+                        <div class="panel chart-panel">
+                            <div class="panel-heading">
+                                <h2>Scatter plot & regression line</h2>
+                            </div>
+                            <canvas id="scatterChart"></canvas>
+                        </div>
+
+                        <div class="panel">
+                            <h2>Relationship interpretation</h2>
+                            <div id="correlationInterpretation" class="interpretation">
+                                Enter paired data to analyze the relationship.
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- DATASET MANAGER -->
+
+                    <section id="datasets" class="page">
+
+                        <div class="page-intro">
+                            <span class="eyebrow">MODULE 04</span>
+                            <h1>Dataset Manager</h1>
+                            <p>Create, import, edit and organize numerical datasets.</p>
+                        </div>
+
+                        <div class="panel">
+
+                            <div class="panel-heading">
+                                <h2>Manage datasets</h2>
+                                <span id="datasetTotal" class="badge">0 datasets</span>
+                            </div>
+
+                            <div class="dataset-controls">
+
+                                <input type="text" id="datasetName" placeholder="Enter dataset name">
+
+                                <button class="primary-btn" onclick="addDataset()">
+                                    + Add Dataset
+                                </button>
+
+                                <label class="upload-btn">
+                                    ↑ Import CSV / Excel
+                                    <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" hidden>
+                                </label>
+                            </div>
+
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>DATASET</th>
+                                            <th>OBSERVATIONS</th>
+                                            <th>MEAN</th>
+                                            <th>STANDARD DEVIATION</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="datasetTable"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h2>Dataset editor</h2>
+                                <select id="editorDataset" class="select-input"></select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>EDIT DATA VALUES</label>
+                                <textarea id="editorData" placeholder="Enter comma-separated values"></textarea>
+                            </div>
+
+                            <button class="primary-btn" onclick="saveDatasetEdit()">
+                                Save Changes →
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- DATASET COMPARISON -->
+
+                    <section id="comparison" class="page">
+
+                        <div class="page-intro">
+                            <span class="eyebrow">MODULE 05</span>
+                            <h1>Dataset Comparison</h1>
+                            <p>Compare the statistical characteristics of different datasets.</p>
+                        </div>
+
+                        <div class="panel">
+
+                            <h2>Select datasets to compare</h2>
+
+                            <div class="two-column">
+                                <div>
+                                    <label>DATASET A</label>
+                                    <select id="compareA" class="select-input"></select>
+                                </div>
+
+                                <div>
+                                    <label>DATASET B</label>
+                                    <select id="compareB" class="select-input"></select>
+                                </div>
+                            </div>
+
+                            <button class="primary-btn" onclick="compareDatasets()">
+                                Compare Datasets →
+                            </button>
+                        </div>
+
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h2>Statistical comparison</h2>
+                            </div>
+
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>METRIC</th>
+                                            <th id="compareTitleA">DATASET A</th>
+                                            <th id="compareTitleB">DATASET B</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="comparisonTable">
+                                        <tr>
+                                            <td colspan="3">Select two datasets to compare.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="panel chart-panel">
+                            <h2>Mean and standard deviation comparison</h2>
+                            <canvas id="comparisonChart"></canvas>
+                        </div>
+                    </section>
+
+                    <!-- REPORTS -->
+
+                    <section id="reports" class="page">
+
+                        <div class="page-intro">
+                            <span class="eyebrow">MODULE 06</span>
+                            <h1>Reports & Export</h1>
+                            <p>Generate and export statistical analysis results.</p>
+                        </div>
+
+                        <div class="panel">
+                            <h2>Export options</h2>
+
+                            <div class="export-grid">
+
+                                <button class="export-card" onclick="exportCSV()">
+                                    <span>▤</span>
+                                    <strong>Export CSV</strong>
+                                    <small>Statistical results</small>
+                                </button>
+
+                                <button class="export-card" onclick="exportExcel()">
+                                    <span>▥</span>
+                                    <strong>Export Excel</strong>
+                                    <small>Spreadsheet report</small>
+                                </button>
+
+                                <button class="export-card" onclick="exportPDF()">
+                                    <span>▧</span>
+                                    <strong>Export PDF</strong>
+                                    <small>Formatted analysis report</small>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="panel">
+                            <h2>Recent analysis history</h2>
+                            <div id="reportHistory" class="empty-state">
+                                No reports available yet.
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <footer class="footer">
+                    <span>STATSPACE 2.0</span>
+                    <span>PRECISION IN EVERY NUMBER</span>
+                    <span>© MONISH RAJA</span>
+                </footer>
+            </main>
+        </div>
+
+        <div id="toast" class="toast"></div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
